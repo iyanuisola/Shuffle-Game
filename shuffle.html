@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shuffle</title>
+    <!-- Bootstrap -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="w3css/2.0/w3.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+        
+        
+        <script>
+        	
+			var originalWord,m;
+			var minute=3;
+			var second=10
+			;
+			var index="";
+			var shuffledWord="";
+			
+			
+			
+			var football=["Soccer", "Referee", "Jersey", "Boot", "Goal" , "Cornerkick" , "Penalty" , "Freekick"];
+
+			function ojb()
+			{
+				index = Math.floor(Math.random() * football.length) ;
+				//document.getElementById("shuff").value=football[index];
+				countdown();
+				stat();
+				document.getElementById("startt").disabled=true;
+				document.getElementById("reste").disabled=true;
+				shuff(football[index]);
+
+			}
+
+			function ans()
+			{
+				if(document.getElementById("correct").value==originalWord)
+				{
+					index = Math.floor(Math.random() * football.length) ;
+					shuff(football[index]);
+					document.getElementById("correct").value=""
+				}
+				else
+				{
+					alert("wrong");
+					index = Math.floor(Math.random() * football.length) ;
+					shuff(football[index]);
+				}
+				
+
+				if (document.getElementById("correct").value==originalWord)
+				{
+					score += 10;
+
+				}
+			}
+
+
+			function shuff(word)
+			{
+				originalWord=word;
+				//alert(originalWord);
+				shuffledarr=originalWord.split("");
+				//alert(shuffledarr[2]);
+				wordLength = shuffledarr.length;
+				//alert(wordLength);
+				var shuffledWord = "";
+				for (var j=0 ; j<wordLength ; j++)
+				{
+					var rando = Math.floor(Math.random() * wordLength);
+					if(shuffledarr[rando] !="")
+					{
+						shuffledWord += shuffledarr[rando];
+						shuffledarr[rando]="";
+					}
+					else
+					{
+						j--;
+					}
+				}
+				document.getElementById("shuff").value=shuffledWord;
+				//alert(shuffledWord);
+			}
+				
+
+		
+        	
+
+			function countdown()
+			{ 
+				second--;
+				if(second == -1)
+				{
+					second = 2;
+					minute--;
+					if (minute ==-1)
+					{
+							minute= "";
+							second=0;
+							document.getElementById("tim").value = 0 + " : " + 0;
+							alert("time up");
+							document.getElementById("reste").disabled=false;
+							document.getElementById("startt").disabled=true;
+
+							return;
+					}
+					
+				}
+				
+				
+				document.getElementById("tim").value = minute + " : " + second;
+				timer = window.setTimeout("countdown()",1000);
+
+				/*if (document.getElementById("tim").value == 0 + " : " + 0)
+				{
+					clearTimeout(timer);
+					
+				}*/
+
+				
+			}
+
+
+			function stat()
+			{
+			
+				if (document.getElementById("tim").value ==0 + " : " + 0)
+				{
+					countdown();
+				}
+
+				if (document.getElementById("tim").value == "")
+				{
+					countdown();
+					document.getElementById("reste").disabled=true;
+					
+				}
+				
+				
+			}
+
+
+
+			/*function res()
+			{
+				window.reload();
+			}*/
+
+        
+        /*if(document.getElementById("tim").value == 0 + " : " + 0)
+				{
+					return;
+				}*/
+				
+				
+				/*//alert("here");	
+				alert(football[3]);
+				i=Math.floor(Math.random());
+				alert(i);	*/
+				
+				
+				/*//alert("here");
+				document.getElementById("tim").value = u + " : " + t;
+				t--;
+				var timer=setTimeout(stat,1000);
+				
+				if(t==-1)
+				{
+					//t=3;
+					u--;
+					t=3;
+				}
+				
+				else if(u==-1 && t==-1)
+				{
+					alert("Time Up");
+				}
+				*/
+				//alert (g);
+			/*	
+			document.getElementById("tim").value= u + t " : " + t;
+			var timer=setTimeout(stat,1000);
+			t--;
+			
+			alert("here");
+			if(t<0)
+			
+			{
+				u--;
+			}
+			
+			else if (u<=0 && t==00)
+			{
+				alert("time Up");
+				timer = clearTimeout(timer);
+
+			}	
+				
+				*/
+				
+        
+        </script>
+        
+  </head>
+  <body>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="../bootstrap/js/jquery-3.1.1.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="../bootstrap/js/bootstrap.js"></script>
+
+	<div class="container">
+    	<div  class="row">
+        	
+            
+            <div class="col-xs-2">
+             &nbsp;
+            </div>
+            <button onclick="shuff()"> here </button>
+             <div class="col-xs-8">
+             	<!--<div class="page-header" style="border:1px solid teal; background-color:teal">
+                	<h1 align="center"> Shuffle Game </h1>-->
+                    <div> &nbsp; </div>
+                    <div class="w3-card-4">
+
+						<div class="w3-container w3-teal">
+						  <h2>Shuffle Game</h2>
+						</div>
+                    
+                </div>
+                
+                
+                <div> &nbsp; </div>
+              
+                
+                <div class="form-group"> 
+    				<div class="col-sm-offset-2 col-sm-10">
+                    <input type="button" class="w3-btn w3-round-xlarge" onClick="ojb()" value="Start" id="startt" />
+                    <a href="">
+                    <input type="reset" class="w3-btn w3-round-xlarge" onClick="rest()" value="Reset" id="reste" onclick="res()" />
+                    </a>
+      				
+    			</div>
+ 			</div>
+            
+              <div> &nbsp; </div>
+                
+            	<form class="form-horizontal" role="form">
+				  <div class="form-group">
+    				<label class="control-label col-sm-2">Shuffled Word:</label>
+                    
+                   
+                    
+				    <div class="col-sm-10">
+			      		<input type="text" class="form-control" id="shuff" placeholder="Shuffled Word">
+    				</div>
+ 				 </div>
+  
+  				<div class="form-group">
+    				<label class="control-label col-sm-2">Correct Word:</label>
+    					<div class="col-sm-10"> 
+      						<input type="text" class="form-control" placeholder="Correct Word" id="correct">
+    					</div>
+  				</div>
+
+                
+  				<div class="form-group"> 
+    				<div class="col-sm-offset-2 col-sm-10">
+                    <input type="button" class="w3-btn w3-round-xlarge" onClick="ans()" value="Submit" />
+      				
+    			</div>
+ 			</div>
+            
+            <script type="text/javascript"> function here()
+            {
+            	//alert("here");
+            	window.location(reload());
+            }
+            </script>
+            
+            <div>
+            
+            
+            	
+            
+            </div>
+            
+            <div>
+	            <input type="text" id="tim" value="" />
+            </div>
+            
+            <div> &nbsp; </div>
+            
+            <!-- <div class="progress">
+  				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+     -->
+  </div>
+</div>
+            
+		</form>
+
+
+             </div>
+            </div>
+            
+            
+             <div class="col-xs-2">
+             &nbsp;
+            </div>
+            
+            
+            
+            
+            
+            
+        </div>
+  </body>
+</html>
